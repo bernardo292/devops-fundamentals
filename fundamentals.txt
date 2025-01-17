@@ -1,1 +1,0 @@
-## This doc helps us to understand the basics of devops fundamentals
