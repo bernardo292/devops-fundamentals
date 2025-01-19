@@ -1,6 +1,6 @@
 ## VPC
 
-resource "aws_vpc" "main" {
+resource "aws_vpc" "vpc" {
   cidr_block = var.cidr_block_vpc
 instance_tenancy = var.instance_tenancy
 
@@ -12,7 +12,7 @@ instance_tenancy = var.instance_tenancy
 ###############
 
 resource "aws_subnet" "public-subnet-1" {
-  vpc_id     = aws_vpc.main.id
+  vpc_id     = aws_vpc.vpc.id
   cidr_block = var.cidr_block_public_subnet1
   availability_zone = var.bi1
   map_public_ip_on_launch = true
@@ -23,7 +23,7 @@ resource "aws_subnet" "public-subnet-1" {
 }
 
 resource "aws_subnet" "public-subnet-2" {
-  vpc_id     = aws_vpc.main.id
+  vpc_id     = aws_vpc.vpc.id
   cidr_block = var.cidr_block_public_subnet2
   availability_zone = var.bi2
   map_public_ip_on_launch = true
@@ -34,7 +34,7 @@ resource "aws_subnet" "public-subnet-2" {
 }
 
 resource "aws_subnet" "private-subnet-1" {
-  vpc_id     = aws_vpc.main.id
+  vpc_id     = aws_vpc.vpc.id
   cidr_block =var.cidr_block_private_subnet1
   availability_zone = var.bi1
   map_public_ip_on_launch = false
@@ -45,7 +45,7 @@ resource "aws_subnet" "private-subnet-1" {
 }
 
 resource "aws_subnet" "private-subnet-2" {
-  vpc_id     = aws_vpc.main.id
+  vpc_id     = aws_vpc.vpc.id
   cidr_block = var.cidr_block_private_subnet2
   availability_zone = var.bi2
   map_public_ip_on_launch = false
@@ -59,7 +59,7 @@ resource "aws_subnet" "private-subnet-2" {
 ## Internet  gateway
 
 resource "aws_internet_gateway" "gw" {
-  vpc_id = aws_vpc.main.id
+  vpc_id = aws_vpc.vpc.id
 
   tags = {
     Name = var.name_igw
@@ -70,7 +70,7 @@ resource "aws_internet_gateway" "gw" {
 # Route table
 
 resource "aws_route_table" "route" {
-  vpc_id = aws_vpc.main.id
+  vpc_id = aws_vpc.vpc.id
 
   route {
     cidr_block = var.cidr_block_route_table
