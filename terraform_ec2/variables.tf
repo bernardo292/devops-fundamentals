@@ -41,25 +41,25 @@ variable "aws_iam_role_policy" {
 variable "region" {
   type = string
   description = "Define the aws region"
-  default = "us-east-2"
+  default = "eu-north-1"
 }
 
 variable "bi1" {
   type = string
   description = "Define the aws Availability zone"
-  default = "us-east-2a"
+  default = "eu-north-1a"
 }
 
 variable "bi2" {
   type = string
   description = "Define the aws Availability zone"
-  default = "us-east-2b"
+  default = "eu-north-2b"
 }
 
 variable "aws_vpc_name" {
   type = string
   description = "Define the vpc name"
-  # default = "ivo_vpc"
+  # default = "bernado_vpc"
 }
 
 variable "cidr_block_vpc" {
@@ -124,7 +124,7 @@ variable "cidr_block_route_table" {
 
 variable "route_table_name" {
   type = string
-  default = "bakor_route_table"
+  default = "bernado_route_table"
 }
 
 variable "nat_gateway_1_name" {
