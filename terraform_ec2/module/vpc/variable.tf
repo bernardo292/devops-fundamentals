@@ -13,7 +13,7 @@ variable "bi1" {
 variable "bi2" {
   type = string
   description = "Define the aws Availability zone"
-  default = "eu-north-2b"
+  default = "eu-north-1b"
 }
 
 variable "cidr_block_private_subnet1" {
@@ -30,7 +30,7 @@ variable "vpc_name1" {
 variable "cidr_block_private_subnet2" {
   description = "CIDR block for the second private subnet"
   type        = string
-  default = "10.0.2.0/24"
+  default = "10.0.4.0/24"
 }
 
 variable "vpc_name2" {
@@ -57,7 +57,7 @@ variable "aws_vpc_name" {
 variable "cidr_block_vpc" {
   type = string
   description = "Define the vpc cidr block"
-  default = "10.0.0.0/8"
+  default = "10.0.0.0/16"
 }
 
 variable "instance_tenancy" {
