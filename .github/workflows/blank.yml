@@ -3,7 +3,7 @@ name: Terraform Workflow
 on:
   push:
     branches:
-      - feature/cicd ## branch -- featute/cicd
+      - feature/cicd 
       - main
 
 jobs:
@@ -19,17 +19,19 @@ jobs:
         with:
           terraform_version: 1.5.0
 
+      - name: Change to Terraform Directory
+        run: cd terraform_101
+
       - name: Terraform Init
         id: init-step
-        run: |
-          cd ./terraform_ec2
-          terraform init
+        run: 
+         cd ./terraform_101 && terraform init
 
       - name: Upload Terraform Folder
         uses: actions/upload-artifact@v3
         with:
           name: terraform-init
-          path: ./terraform_ec2
+          path: ./**/
 
   validate:
     runs-on: ubuntu-latest
@@ -46,7 +48,7 @@ jobs:
 
       - name: removed existing terraform files
         run: |
-          rm -r ./terraform_ec2
+          rm -r ./**
           ls -la
 
       - name: Download Terraform Folder
@@ -54,7 +56,10 @@ jobs:
         with:
           name: terraform-init
 
+      - name: Terraform init
+        run: 
+          cd ./terraform_101 && terraform init
+
       - name: Terraform Validate
-        run: |
-          terraform init
+        run: 
           terraform validate
