@@ -28,7 +28,7 @@ resource "aws_nat_gateway" "nat2" {
 
 ### VPC setup for Nat
 resource "aws_route_table" "main-private-1" {
-  vpc_id = aws_vpc.vpc.id
+  vpc_id = aws_vpc.main.id
   route {
     cidr_block = var.cidr_route_table_1
     nat_gateway_id = aws_nat_gateway.nat1.id
@@ -40,7 +40,7 @@ tags = {
 }
 
 resource "aws_route_table" "main-private-2" {
-  vpc_id = aws_vpc.vpc.id
+  vpc_id = aws_vpc.main.id
   route  {
     cidr_block = var.cidr_route_table_2
     nat_gateway_id = aws_nat_gateway.nat2.id
@@ -57,6 +57,6 @@ resource "aws_route_table_association" "private-1" {
 }
 
 resource "aws_route_table_association" "private-2" {
-  gateway_id     = aws_subnet.private-subnet-2.id
+  subnet_id     = aws_subnet.private-subnet-2.id
   route_table_id = aws_route_table.main-private-2.id
 }
